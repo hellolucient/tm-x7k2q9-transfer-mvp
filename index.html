@@ -1,0 +1,1392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ARRIVA Maldives | Luxury Speedboat Transfers & Charters</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Montserrat & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            arriva: {
+              black: '#080c14',
+              dark: '#0c121e',
+              card: '#121a29',
+              border: '#1f2b3e',
+              cyan: '#00cce6',
+              cyanHover: '#00b4cc',
+              orange: '#f26522',
+              pink: '#e91e63',
+              purple: '#7b1fa2',
+              amber: '#f59e0b',
+              gold: '#e5a93c',
+              slate: '#8b9bb4'
+            }
+          },
+          fontFamily: {
+            sans: ['Montserrat', 'sans-serif'],
+            display: ['Outfit', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom Scrollbars and Ambient Lighting */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #080c14;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1f2b3e;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #00cce6;
+    }
+    .hero-glow {
+      background: radial-gradient(circle at 50% 20%, rgba(0, 204, 230, 0.12) 0%, rgba(242, 101, 34, 0.04) 35%, transparent 70%);
+    }
+    .glass-header {
+      background: rgba(8, 12, 20, 0.94);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+  </style>
+</head>
+<body class="bg-arriva-black text-slate-100 font-sans min-h-screen flex flex-col selection:bg-arriva-cyan selection:text-arriva-black">
+
+  <!-- ================= TOP DUAL-MODE SWITCHER (DEMO CONTROL) ================= -->
+  <div class="bg-arriva-dark border-b border-arriva-border/60 py-2 px-4">
+    <div class="max-w-7xl mx-auto flex items-center justify-between text-xs">
+      <div class="flex items-center space-x-2">
+        <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        <span class="text-slate-400 hidden sm:inline">Operating Environment:</span>
+        <span class="font-medium text-slate-200">Arriva Maldives Maritime Operations</span>
+      </div>
+      
+      <!-- View Mode Tabs -->
+      <div class="flex items-center bg-arriva-black rounded-lg p-1 border border-arriva-border">
+        <button id="viewTabCustomer" onclick="switchView('customer')" class="flex items-center space-x-1.5 px-3 py-1 rounded-md text-xs font-semibold bg-arriva-cyan text-arriva-black transition-all">
+          <i data-lucide="compass" class="w-3.5 h-3.5"></i>
+          <span>Guest Booking Engine</span>
+        </button>
+        <button id="viewTabAdmin" onclick="switchView('admin')" class="flex items-center space-x-1.5 px-3 py-1 rounded-md text-xs font-semibold text-slate-400 hover:text-white transition-all">
+          <i data-lucide="sliders" class="w-3.5 h-3.5"></i>
+          <span>Admin Pricing &amp; Fleet Panel</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= HEADER WITH ACCURATE ARRIVA LOGO ================= -->
+  <header class="sticky top-0 z-40 glass-header border-b border-arriva-border">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      
+      <!-- EXACT ARRIVA LOGO AS SHOWN IN SCREENSHOT -->
+      <a href="#" onclick="switchView('customer')" class="flex items-center space-x-3.5 group">
+        <!-- 4 Geometric Tile Clusters -->
+        <div class="relative w-9 h-9 flex-shrink-0">
+          <!-- Orange Main Square -->
+          <div class="absolute top-0 left-0 w-4 h-4 rounded-[3px] bg-[#f26522] shadow-sm"></div>
+          <!-- Magenta Bottom Left Square -->
+          <div class="absolute bottom-0 left-1 w-2.5 h-2.5 rounded-[2px] bg-[#e91e63]"></div>
+          <!-- Purple Middle Bottom Square -->
+          <div class="absolute bottom-1 left-4 w-3 h-3 rounded-[2px] bg-[#7b1fa2]"></div>
+          <!-- Cyan Top Right Accent Square -->
+          <div class="absolute top-1 right-0.5 w-2.5 h-2.5 rounded-[2px] bg-[#00cce6]"></div>
+        </div>
+
+        <!-- Distinctive Lowercase Cyan Wordmark -->
+        <div class="flex flex-col">
+          <span class="text-3xl font-bold tracking-tight text-[#00cce6] lowercase font-display leading-none">arriva</span>
+          <span class="text-[9px] uppercase tracking-[0.25em] text-slate-400 font-semibold mt-0.5">Maldives</span>
+        </div>
+      </a>
+
+      <!-- Center Nav Links -->
+      <nav class="hidden md:flex items-center space-x-8 text-sm font-medium">
+        <button onclick="switchView('customer')" class="text-white hover:text-arriva-cyan transition-colors">Transfer Engine</button>
+        <a href="#fleetShowcase" class="text-slate-400 hover:text-white transition-colors">The Fleet</a>
+        <a href="#destinations" class="text-slate-400 hover:text-white transition-colors">Atolls &amp; Resorts</a>
+        <button onclick="switchView('admin')" class="text-slate-400 hover:text-arriva-cyan transition-colors flex items-center">
+          <i data-lucide="shield" class="w-3.5 h-3.5 mr-1 text-arriva-orange"></i> Backoffice Rates
+        </button>
+      </nav>
+
+      <!-- Right Contact & Mobile Hamburger -->
+      <div class="flex items-center space-x-4">
+        <a href="https://wa.me/9607902774" target="_blank" class="hidden sm:inline-flex items-center space-x-2 text-xs font-semibold px-4 py-2.5 rounded-lg bg-arriva-card border border-arriva-border text-slate-200 hover:border-arriva-cyan transition-colors">
+          <i data-lucide="phone" class="w-3.5 h-3.5 text-arriva-cyan"></i>
+          <span>+960 790-ARRIVA</span>
+        </a>
+
+        <!-- Mobile Hamburger Icon -->
+        <button onclick="toggleMobileMenu()" class="p-2 rounded-lg bg-arriva-card border border-arriva-border text-slate-300 hover:text-white md:hidden">
+          <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Mobile Dropdown -->
+    <div id="mobileMenu" class="hidden md:hidden px-4 pt-2 pb-4 bg-arriva-dark border-b border-arriva-border space-y-2 text-sm">
+      <button onclick="switchView('customer'); toggleMobileMenu()" class="block w-full text-left py-2 px-3 rounded text-white bg-arriva-card">Transfer Booking Engine</button>
+      <a href="#fleetShowcase" onclick="toggleMobileMenu()" class="block py-2 px-3 rounded text-slate-300 hover:bg-arriva-card">Arriva Fleet Overview</a>
+      <a href="#destinations" onclick="toggleMobileMenu()" class="block py-2 px-3 rounded text-slate-300 hover:bg-arriva-card">Atoll Distance Guide</a>
+      <button onclick="switchView('admin'); toggleMobileMenu()" class="block w-full text-left py-2 px-3 rounded text-arriva-orange bg-arriva-card/60">Admin Rate Settings</button>
+    </div>
+  </header>
+
+  <!-- ================= VIEW 1: CUSTOMER FACING BOOKING ENGINE ================= -->
+  <div id="customerView" class="flex-1 flex flex-col">
+
+    <!-- HERO SECTION (Matches Screenshot: Text & Ocean Backdrop) -->
+    <section class="relative pt-12 pb-16 lg:pt-16 lg:pb-20 overflow-hidden border-b border-arriva-border/60 hero-glow">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 text-center">
+        
+        <!-- Amber Subheader directly from Screenshot -->
+        <h2 class="text-xs sm:text-sm font-bold uppercase tracking-[0.28em] text-[#f26522] mb-3">
+          PRIVATE SPEEDBOAT TRANSFER MALDIVES
+        </h2>
+
+        <!-- Lowercase 'welcome' title directly from Screenshot -->
+        <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-white tracking-tight lowercase mb-6 font-display">
+          welcome
+        </h1>
+
+        <!-- Introductory copy from screenshot -->
+        <p class="max-w-2xl mx-auto text-slate-300 text-sm sm:text-base leading-relaxed font-light">
+          Looking to enjoy cruising in pristine conditions and experience unique natural landscapes? <strong class="text-white font-semibold">Then, to start your trip seamlessly, rely on our dedicated speedboat transfer services in the Maldives.</strong> In addition, we ensure your private journey is as breathtaking as the destination.
+        </p>
+
+        <!-- Fast Facts -->
+        <div class="mt-8 flex flex-wrap items-center justify-center gap-6 text-xs text-slate-400">
+          <div class="flex items-center space-x-2">
+            <i data-lucide="check" class="w-4 h-4 text-arriva-cyan"></i>
+            <span>Velana Airport (MLE) Direct Jetway</span>
+          </div>
+          <div class="flex items-center space-x-2">
+            <i data-lucide="check" class="w-4 h-4 text-arriva-cyan"></i>
+            <span>Full Coast Guard Certification</span>
+          </div>
+          <div class="flex items-center space-x-2">
+            <i data-lucide="check" class="w-4 h-4 text-arriva-cyan"></i>
+            <span>All-Inclusive VIP Transfers</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- STEPPED BOOKING ENGINE -->
+    <main class="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-10 flex-1">
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        
+        <!-- LEFT: TRIP SPECIFICATION FORM (STEP 1) -->
+        <div class="lg:col-span-5 space-y-6">
+          <div class="bg-arriva-card border border-arriva-border rounded-2xl p-6 shadow-xl">
+            
+            <div class="flex items-center justify-between pb-4 mb-5 border-b border-arriva-border">
+              <div class="flex items-center space-x-2.5">
+                <span class="w-7 h-7 rounded-full bg-[#f26522] text-white flex items-center justify-center text-xs font-bold">1</span>
+                <h3 class="text-lg font-bold text-white font-display">Your Itinerary</h3>
+              </div>
+              <span class="text-xs text-arriva-cyan font-mono" id="itineraryStatusBadge">Awaiting Route</span>
+            </div>
+
+            <div class="space-y-4">
+              
+              <!-- Departure Point -->
+              <div>
+                <label class="block text-xs uppercase font-bold tracking-wider text-slate-300 mb-2">
+                  Departure Point
+                </label>
+                <div class="relative">
+                  <select id="custDeparture" onchange="onCustomerInputChanged()" class="w-full bg-arriva-dark border border-arriva-border focus:border-arriva-cyan rounded-xl px-4 py-3 text-sm text-white focus:outline-none appearance-none transition-colors">
+                    <option value="" disabled selected>-- Select Departure Jetty --</option>
+                    <option value="mle_airport">Velana International Airport (MLE / Hulhulé Jetty)</option>
+                    <option value="male_city">Malé City (Presidential Jetway)</option>
+                    <option value="crossroads">Crossroads Marina (South Malé Atoll)</option>
+                    <option value="maafushi">Maafushi Island Jetty</option>
+                  </select>
+                  <i data-lucide="chevron-down" class="w-4 h-4 text-slate-400 absolute right-4 top-3.5 pointer-events-none"></i>
+                </div>
+              </div>
+
+              <!-- Destination Resort -->
+              <div>
+                <label class="block text-xs uppercase font-bold tracking-wider text-slate-300 mb-2">
+                  Destination Resort / Atoll
+                </label>
+                <div class="relative">
+                  <select id="custDestination" onchange="onCustomerInputChanged()" class="w-full bg-arriva-dark border border-arriva-border focus:border-arriva-cyan rounded-xl px-4 py-3 text-sm text-white focus:outline-none appearance-none transition-colors">
+                    <option value="" disabled selected>-- Select Resort Destination --</option>
+                    <option value="lily_beach">Lily Beach Resort &amp; Spa (South Ari Atoll)</option>
+                    <option value="kandima">Kandima Maldives (Dhaalu Atoll)</option>
+                    <option value="reethi_rah">One&amp;Only Reethi Rah (North Malé Atoll)</option>
+                    <option value="lux_ari">LUX* South Ari Atoll</option>
+                    <option value="waldorf">Waldorf Astoria Maldives Ithaafushi</option>
+                    <option value="custom">-- Custom Charter Distance (Manual KM) --</option>
+                  </select>
+                  <i data-lucide="chevron-down" class="w-4 h-4 text-slate-400 absolute right-4 top-3.5 pointer-events-none"></i>
+                </div>
+              </div>
+
+              <!-- Custom Distance Input (Hidden by default) -->
+              <div id="custCustomDistanceBox" class="hidden p-3.5 rounded-xl bg-arriva-dark border border-arriva-border">
+                <label class="block text-xs font-semibold text-slate-300 mb-1">Custom Cruise Distance (Kilometers):</label>
+                <div class="flex items-center space-x-3">
+                  <input type="number" id="custCustomKm" min="5" max="350" value="65" oninput="onCustomerInputChanged()" class="w-32 bg-arriva-black border border-arriva-border rounded-lg px-3 py-2 text-sm text-white font-mono focus:border-arriva-cyan focus:outline-none">
+                  <span class="text-xs text-slate-400" id="customNmLabel">~ 35.1 Nautical Miles</span>
+                </div>
+              </div>
+
+              <!-- Date & Time -->
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+                <div>
+                  <label class="block text-xs uppercase font-bold tracking-wider text-slate-300 mb-2">
+                    Transfer Date
+                  </label>
+                  <input type="date" id="custDate" onchange="onCustomerInputChanged()" class="w-full bg-arriva-dark border border-arriva-border focus:border-arriva-cyan rounded-xl px-3 py-2.5 text-sm text-white focus:outline-none">
+                </div>
+                <div>
+                  <label class="block text-xs uppercase font-bold tracking-wider text-slate-300 mb-2">
+                    Departure Time
+                  </label>
+                  <input type="time" id="custTime" value="11:00" onchange="onCustomerInputChanged()" class="w-full bg-arriva-dark border border-arriva-border focus:border-arriva-cyan rounded-xl px-3 py-2.5 text-sm text-white focus:outline-none">
+                </div>
+              </div>
+
+              <!-- Passengers & Luggage -->
+              <div class="grid grid-cols-2 gap-3">
+                <div>
+                  <label class="block text-xs uppercase font-bold tracking-wider text-slate-300 mb-2">
+                    Guests (Pax)
+                  </label>
+                  <div class="flex items-center rounded-xl bg-arriva-dark border border-arriva-border px-2 py-1">
+                    <button type="button" onclick="adjustPaxCount(-1)" class="w-7 h-7 rounded bg-arriva-card text-white hover:bg-slate-700 font-bold">-</button>
+                    <input type="number" id="custPax" min="1" max="30" value="4" readonly class="w-full text-center bg-transparent text-sm font-bold text-white focus:outline-none">
+                    <button type="button" onclick="adjustPaxCount(1)" class="w-7 h-7 rounded bg-arriva-card text-white hover:bg-slate-700 font-bold">+</button>
+                  </div>
+                </div>
+
+                <div>
+                  <label class="block text-xs uppercase font-bold tracking-wider text-slate-300 mb-2">
+                    Luggage Bags
+                  </label>
+                  <div class="flex items-center rounded-xl bg-arriva-dark border border-arriva-border px-2 py-1">
+                    <button type="button" onclick="adjustLuggage(-1)" class="w-7 h-7 rounded bg-arriva-card text-white hover:bg-slate-700 font-bold">-</button>
+                    <input type="number" id="custLuggage" min="0" max="30" value="4" readonly class="w-full text-center bg-transparent text-sm font-bold text-white focus:outline-none">
+                    <button type="button" onclick="adjustLuggage(1)" class="w-7 h-7 rounded bg-arriva-card text-white hover:bg-slate-700 font-bold">+</button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- One-way or Return -->
+              <div class="pt-2">
+                <label class="block text-xs uppercase font-bold tracking-wider text-slate-300 mb-2">
+                  Trip Arrangement
+                </label>
+                <div class="grid grid-cols-2 gap-2 bg-arriva-dark p-1 rounded-xl border border-arriva-border text-xs">
+                  <button type="button" id="btnTripOneWay" onclick="setCustomerTripType('oneway')" class="py-2.5 rounded-lg font-bold bg-[#00cce6] text-arriva-black transition-all">
+                    One-Way Transfer
+                  </button>
+                  <button type="button" id="btnTripReturn" onclick="setCustomerTripType('roundtrip')" class="py-2.5 rounded-lg font-bold text-slate-400 hover:text-white transition-all">
+                    Round-Trip (Return)
+                  </button>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Route Details Pill (Visible only when route is selected) -->
+            <div id="routeSummaryNotice" class="hidden mt-5 p-3.5 rounded-xl bg-arriva-dark border border-arriva-border text-xs space-y-1.5">
+              <div class="flex justify-between text-slate-300">
+                <span class="text-slate-400">Atoll Corridor:</span>
+                <span id="routeCorridorText" class="font-medium text-white">South Ari Atoll</span>
+              </div>
+              <div class="flex justify-between text-slate-300">
+                <span class="text-slate-400">Passage Distance:</span>
+                <span id="routeKmText" class="font-mono text-arriva-cyan font-bold">85 km (46 NM)</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- RIGHT: FLEET SELECTION & INSTANT QUOTATION (STEP 2) -->
+        <div class="lg:col-span-7 space-y-6">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center space-x-2.5">
+              <span class="w-7 h-7 rounded-full bg-[#00cce6] text-arriva-black flex items-center justify-center text-xs font-bold">2</span>
+              <h3 class="text-lg font-bold text-white font-display">Select Your Vessel &amp; Quotation</h3>
+            </div>
+            <span class="text-xs text-slate-400" id="fleetAvailabilityCount">4 Vessels In Fleet</span>
+          </div>
+
+          <!-- Empty State: When Departure or Destination is not chosen -->
+          <div id="fleetAwaitingRouteBox" class="bg-arriva-card border border-dashed border-arriva-border rounded-2xl p-10 text-center space-y-4">
+            <div class="w-14 h-14 rounded-2xl bg-arriva-dark text-arriva-cyan flex items-center justify-center mx-auto border border-arriva-border">
+              <i data-lucide="navigation-2" class="w-7 h-7 animate-pulse"></i>
+            </div>
+            <div class="max-w-md mx-auto">
+              <h4 class="text-base font-bold text-white font-display">Select Your Route to Calculate Quotation</h4>
+              <p class="text-xs text-slate-400 mt-1.5 leading-relaxed">
+                Please select your departure jetty and destination resort on the left. The Arriva quotation engine will immediately calculate precise ocean transit times and all-inclusive pricing for available vessels.
+              </p>
+            </div>
+          </div>
+
+          <!-- Vessels List (Rendered dynamically when route is active) -->
+          <div id="fleetCardsContainer" class="hidden space-y-4">
+            <!-- Injected by JavaScript -->
+          </div>
+
+        </div>
+
+      </div>
+
+    </main>
+
+    <!-- SECTION: FLEET SHOWCASE -->
+    <section id="fleetShowcase" class="py-16 bg-arriva-dark border-t border-arriva-border">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-2xl mb-10">
+          <h2 class="text-xs font-bold uppercase tracking-[0.25em] text-[#f26522]">Engineered For The Atolls</h2>
+          <h3 class="text-2xl sm:text-3xl font-bold text-white mt-1 font-display">The Arriva Fleet Standards</h3>
+          <p class="text-xs text-slate-400 mt-2">Custom-built speedboats and executive tenders with offshore deep-V hulls designed for stability across Maldivian channels.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" id="staticFleetCards">
+          <!-- Populated by script with verified SVG illustrations -->
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION: POPULAR DESTINATIONS MATRIX -->
+    <section id="destinations" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-2xl mb-8">
+        <h2 class="text-xs font-bold uppercase tracking-[0.25em] text-[#00cce6]">Nautical Corridors</h2>
+        <h3 class="text-2xl sm:text-3xl font-bold text-white mt-1 font-display">Sample Atoll Distances</h3>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4" id="sampleRoutesGrid">
+        <!-- Injected -->
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ================= VIEW 2: SECURE ADMIN PRICING & FLEET CONTROL PANEL ================= -->
+  <div id="adminView" class="hidden flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+    
+    <!-- Admin Header Banner -->
+    <div class="bg-arriva-card border border-arriva-border rounded-2xl p-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div>
+        <div class="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded bg-[#f26522]/15 text-[#f26522] text-xs font-bold uppercase tracking-wider mb-2">
+          <i data-lucide="shield-alert" class="w-3.5 h-3.5"></i>
+          <span>Internal Operations &amp; Margin Configuration</span>
+        </div>
+        <h2 class="text-2xl font-bold text-white font-display">Arriva Commercial Rate Settings</h2>
+        <p class="text-xs text-slate-400 mt-1">Configure live fuel rates, target margins, and vessel fuel consumption. Guest quotations automatically reflect updates made here.</p>
+      </div>
+
+      <div class="flex items-center space-x-3">
+        <button onclick="resetAdminDefaults()" class="px-4 py-2 rounded-xl bg-arriva-dark border border-arriva-border text-xs text-slate-300 hover:text-white transition-colors">
+          Reset Defaults
+        </button>
+        <button onclick="switchView('customer')" class="px-4 py-2 rounded-xl bg-[#00cce6] text-arriva-black text-xs font-bold hover:bg-arriva-cyanHover transition-colors flex items-center">
+          <i data-lucide="arrow-left" class="w-3.5 h-3.5 mr-1.5"></i>
+          <span>Back to Guest View</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Admin Configuration Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+      <!-- Column 1: Financial & Commercial Factors -->
+      <div class="bg-arriva-card border border-arriva-border rounded-2xl p-6 space-y-5">
+        <div class="flex items-center space-x-2 pb-3 border-b border-arriva-border">
+          <i data-lucide="dollar-sign" class="w-5 h-5 text-arriva-cyan"></i>
+          <h3 class="text-base font-bold text-white font-display">Fuel &amp; Profit Margins</h3>
+        </div>
+
+        <!-- Marine Fuel Price -->
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1">
+            Maldives Marine Fuel Price ($ / Liter)
+          </label>
+          <div class="relative">
+            <span class="absolute left-3 top-2.5 text-slate-500 font-mono text-sm">$</span>
+            <input type="number" id="cfgFuelPrice" step="0.05" min="0.5" max="5.0" onchange="updateAdminConfig()" class="w-full bg-arriva-dark border border-arriva-border rounded-xl pl-8 pr-3 py-2.5 text-sm text-white font-mono focus:border-arriva-cyan focus:outline-none">
+          </div>
+          <span class="text-[10px] text-slate-500 mt-1 block">Standard bunkering tariff in Malé Harbor</span>
+        </div>
+
+        <!-- Profit Margin Slider -->
+        <div>
+          <div class="flex justify-between items-center mb-1">
+            <label class="text-xs font-semibold text-slate-300">Target Profit Margin</label>
+            <span id="cfgMarginLabel" class="text-sm font-bold text-arriva-cyan font-mono">35%</span>
+          </div>
+          <input type="range" id="cfgMargin" min="10" max="80" step="1" oninput="document.getElementById('cfgMarginLabel').innerText = this.value + '%'; updateAdminConfig()" class="w-full accent-arriva-cyan cursor-pointer">
+          <span class="text-[10px] text-slate-500 mt-1 block">Applied automatically over direct operational expenses</span>
+        </div>
+
+        <!-- Crew & Base Turn Fee -->
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1">
+            Base Crew &amp; Turnaround Fee ($)
+          </label>
+          <div class="relative">
+            <span class="absolute left-3 top-2.5 text-slate-500 font-mono text-sm">$</span>
+            <input type="number" id="cfgCrewBase" step="10" min="50" max="1000" onchange="updateAdminConfig()" class="w-full bg-arriva-dark border border-arriva-border rounded-xl pl-8 pr-3 py-2.5 text-sm text-white font-mono focus:border-arriva-cyan focus:outline-none">
+          </div>
+          <span class="text-[10px] text-slate-500 mt-1 block">Fixed per-charter captain, crew, and berthing dues</span>
+        </div>
+
+        <!-- Maldives TGST Tax -->
+        <div>
+          <div class="flex justify-between items-center mb-1">
+            <label class="text-xs font-semibold text-slate-300">Maldives TGST Rate</label>
+            <span id="cfgTgstLabel" class="text-sm font-bold text-arriva-amber font-mono">16%</span>
+          </div>
+          <input type="range" id="cfgTgst" min="0" max="25" step="1" oninput="document.getElementById('cfgTgstLabel').innerText = this.value + '%'; updateAdminConfig()" class="w-full accent-arriva-amber cursor-pointer">
+          <span class="text-[10px] text-slate-500 mt-1 block">Tourism Goods and Services Tax (Inland Revenue)</span>
+        </div>
+
+      </div>
+
+      <!-- Column 2 & 3: Vessel Fleet & Fuel Burn Parameters -->
+      <div class="lg:col-span-2 bg-arriva-card border border-arriva-border rounded-2xl p-6 space-y-5">
+        <div class="flex items-center justify-between pb-3 border-b border-arriva-border">
+          <div class="flex items-center space-x-2">
+            <i data-lucide="anchor" class="w-5 h-5 text-arriva-orange"></i>
+            <h3 class="text-base font-bold text-white font-display">Vessel Consumption Coefficients</h3>
+          </div>
+          <span class="text-xs text-slate-400">Direct Fleet Telemetry</span>
+        </div>
+
+        <p class="text-xs text-slate-400">
+          The booking engine calculates distance (KM) multiplied by the boat's fuel consumption factor, multiplied by the fuel price per liter. Adjust rates here to reflect actual sea-trial fuel burn.
+        </p>
+
+        <div class="space-y-4" id="adminVesselList">
+          <!-- Populated by script -->
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Distance Matrix Editor -->
+    <div class="bg-arriva-card border border-arriva-border rounded-2xl p-6">
+      <div class="flex items-center space-x-2 pb-3 border-b border-arriva-border mb-4">
+        <i data-lucide="map" class="w-5 h-5 text-arriva-cyan"></i>
+        <h3 class="text-base font-bold text-white font-display">Route Distance Telemetry (Kilometers from MLE Airport)</h3>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4" id="adminRoutesList">
+        <!-- Injected -->
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ================= MODAL: QUOTATION REQUEST / AVAILABILITY FORM ================= -->
+  <div id="quoteModal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-arriva-dark border border-arriva-border rounded-2xl max-w-xl w-full max-h-[92vh] overflow-y-auto shadow-2xl p-6 text-slate-200">
+      
+      <div class="flex items-center justify-between pb-4 border-b border-arriva-border">
+        <div>
+          <span class="text-[10px] tracking-widest uppercase font-bold text-arriva-cyan">Official Arriva Quotation</span>
+          <h3 class="text-lg font-bold text-white font-display">Request Availability &amp; Berth Confirmation</h3>
+        </div>
+        <button onclick="closeQuoteModal()" class="p-1 rounded hover:bg-slate-800 text-slate-400 hover:text-white">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <!-- Live Summary Banner -->
+      <div class="mt-4 p-4 rounded-xl bg-arriva-card border border-arriva-border flex items-center justify-between">
+        <div>
+          <span class="text-xs text-slate-400 block" id="modalVesselName">Arriva 38 Sovereign</span>
+          <span class="text-sm font-bold text-white" id="modalRouteSummary">Velana Airport → Lily Beach</span>
+          <span class="text-xs text-slate-400 block mt-0.5" id="modalPaxSummary">4 Guests • One-Way</span>
+        </div>
+        <div class="text-right">
+          <span class="text-[10px] uppercase tracking-wider text-slate-400 block">Total Quotation</span>
+          <span class="text-xl font-bold text-arriva-cyan font-mono" id="modalPriceTotal">$1,480 USD</span>
+        </div>
+      </div>
+
+      <!-- Guest Lead Form -->
+      <form onsubmit="handleSendBookingRequest(event)" class="mt-5 space-y-4 text-xs">
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block uppercase font-bold tracking-wider text-slate-300 mb-1">Lead Guest Full Name *</label>
+            <input type="text" id="reqName" required placeholder="e.g. John Henderson" class="w-full bg-arriva-card border border-arriva-border rounded-lg px-3 py-2.5 text-white focus:border-arriva-cyan focus:outline-none">
+          </div>
+          <div>
+            <label class="block uppercase font-bold tracking-wider text-slate-300 mb-1">Email Address *</label>
+            <input type="email" id="reqEmail" required placeholder="guest@resort.com" class="w-full bg-arriva-card border border-arriva-border rounded-lg px-3 py-2.5 text-white focus:border-arriva-cyan focus:outline-none">
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block uppercase font-bold tracking-wider text-slate-300 mb-1">WhatsApp / Phone *</label>
+            <input type="tel" id="reqPhone" required placeholder="+44 7911 123456" class="w-full bg-arriva-card border border-arriva-border rounded-lg px-3 py-2.5 text-white focus:border-arriva-cyan focus:outline-none">
+          </div>
+          <div>
+            <label class="block uppercase font-bold tracking-wider text-slate-300 mb-1">Flight Number (If arriving MLE)</label>
+            <input type="text" id="reqFlight" placeholder="e.g. EK658 or QR672" class="w-full bg-arriva-card border border-arriva-border rounded-lg px-3 py-2.5 text-white focus:border-arriva-cyan focus:outline-none">
+          </div>
+        </div>
+
+        <div>
+          <label class="block uppercase font-bold tracking-wider text-slate-300 mb-1">Special VIP Requests / Luggage Notes</label>
+          <textarea id="reqNotes" rows="2" placeholder="e.g. Cold towels on boarding, infant life vest, diving gear storage..." class="w-full bg-arriva-card border border-arriva-border rounded-lg px-3 py-2 text-white focus:border-arriva-cyan focus:outline-none"></textarea>
+        </div>
+
+        <div class="p-3 rounded-lg bg-arriva-card/60 border border-arriva-border text-[11px] text-slate-400 flex items-start space-x-2">
+          <i data-lucide="info" class="w-4 h-4 text-arriva-cyan flex-shrink-0 mt-0.5"></i>
+          <span>This quote is provisional and subject to Maldivian maritime port clearance. No upfront payment is charged at this step. Our operations desk will confirm berth availability.</span>
+        </div>
+
+        <div class="flex items-center justify-end space-x-3 pt-2">
+          <button type="button" onclick="closeQuoteModal()" class="px-4 py-2.5 rounded-lg bg-arriva-card text-slate-300 hover:bg-slate-800 font-semibold">
+            Cancel
+          </button>
+          <button type="submit" class="px-6 py-2.5 rounded-lg font-bold bg-[#00cce6] hover:bg-arriva-cyanHover text-arriva-black uppercase tracking-wider shadow">
+            Send Booking Request
+          </button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+  <!-- ================= NOTIFICATION TOAST ================= -->
+  <div id="toastBox" class="fixed bottom-6 right-6 z-50 transform translate-y-28 opacity-0 transition-all duration-300 max-w-sm w-full bg-arriva-card border border-arriva-cyan rounded-xl p-4 shadow-2xl flex items-start space-x-3">
+    <div class="text-arriva-cyan flex-shrink-0 mt-0.5">
+      <i data-lucide="check-circle-2" class="w-5 h-5"></i>
+    </div>
+    <div class="flex-1">
+      <h4 id="toastHeading" class="text-xs font-bold text-white">Quotation Dispatched</h4>
+      <p id="toastBody" class="text-xs text-slate-300 mt-0.5">Inquiry registered successfully.</p>
+    </div>
+  </div>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="mt-auto border-t border-arriva-border bg-arriva-black py-8 text-xs text-slate-500">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center space-x-3">
+        <!-- Mini Arriva Logo -->
+        <div class="relative w-5 h-5">
+          <div class="absolute top-0 left-0 w-2.5 h-2.5 rounded-[1px] bg-[#f26522]"></div>
+          <div class="absolute bottom-0 left-0.5 w-1.5 h-1.5 rounded-[1px] bg-[#e91e63]"></div>
+          <div class="absolute bottom-0.5 left-2.5 w-2 h-2 rounded-[1px] bg-[#7b1fa2]"></div>
+          <div class="absolute top-0.5 right-0 w-1.5 h-1.5 rounded-[1px] bg-[#00cce6]"></div>
+        </div>
+        <span class="text-slate-400">© 2026 ARRIVA Maldives. All marine rights reserved.</span>
+      </div>
+
+      <div class="flex items-center space-x-6 text-slate-400">
+        <a href="https://arriva.mv" target="_blank" class="hover:text-arriva-cyan">Official: arriva.mv</a>
+        <span>•</span>
+        <button onclick="switchView('admin')" class="hover:text-arriva-cyan flex items-center">
+          <i data-lucide="lock" class="w-3 h-3 mr-1"></i> Admin Portal
+        </button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================= APPLICATION ENGINE LOGIC ================= -->
+  <script>
+    /* ================= CORE DATA: FLEET DEFINITIONS ================= */
+    // SVG Speedboat Profiles: Guaranteed to load immediately without external image dependencies
+    const boatSvgs = {
+      sport: `<svg viewBox="0 0 400 220" class="w-full h-full bg-[#0a101d]" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="hull1" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#1e293b"/><stop offset="100%" stop-color="#0f172a"/></linearGradient>
+          <linearGradient id="cyanLine" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#00cce6"/><stop offset="100%" stop-color="#007799"/></linearGradient>
+        </defs>
+        <!-- Ocean Horizon -->
+        <path d="M0 160 Q100 155 200 160 T400 160 L400 220 L0 220 Z" fill="#071224"/>
+        <path d="M0 170 Q120 168 240 172 T400 170 L400 220 L0 220 Z" fill="#040c18"/>
+        <!-- Wake -->
+        <path d="M40 165 C120 165 240 172 380 172" stroke="rgba(255,255,255,0.25)" stroke-width="2" stroke-dasharray="8 4"/>
+        <!-- Boat Hull -->
+        <path d="M60 152 L90 120 L270 120 L340 145 L350 152 L60 152 Z" fill="url(#hull1)" stroke="#334155" stroke-width="1.5"/>
+        <path d="M70 148 L338 148" stroke="url(#cyanLine)" stroke-width="3"/>
+        <!-- Cabin / T-Top -->
+        <path d="M140 120 L160 85 L250 85 L260 120 Z" fill="#0f172a" stroke="#475569" stroke-width="1.5"/>
+        <path d="M170 95 L240 95 L245 115 L165 115 Z" fill="#38bdf8" opacity="0.35"/>
+        <!-- Twin Outboards -->
+        <rect x="45" y="132" width="14" height="24" rx="2" fill="#0f172a" stroke="#64748b"/>
+        <rect x="35" y="136" width="12" height="22" rx="2" fill="#0f172a" stroke="#64748b"/>
+        <!-- Radar Mast -->
+        <line x1="200" y1="85" x2="200" y2="72" stroke="#94a3b8" stroke-width="2"/>
+        <circle cx="200" cy="70" r="3" fill="#f26522"/>
+      </svg>`,
+      sovereign: `<svg viewBox="0 0 400 220" class="w-full h-full bg-[#0a101d]" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="hull2" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#1e293b"/><stop offset="100%" stop-color="#111c2e"/></linearGradient>
+        </defs>
+        <!-- Ocean -->
+        <path d="M0 162 Q150 158 300 162 T400 162 L400 220 L0 220 Z" fill="#071224"/>
+        <path d="M0 172 Q180 170 360 174 L400 220 L0 220 Z" fill="#040c18"/>
+        <!-- Wake Spray -->
+        <path d="M50 166 Q200 168 370 172" stroke="rgba(0,204,230,0.3)" stroke-width="3"/>
+        <!-- Hull 38ft -->
+        <path d="M50 154 L75 118 L290 118 L360 146 L370 154 L50 154 Z" fill="url(#hull2)" stroke="#475569" stroke-width="1.5"/>
+        <path d="M60 150 L360 150" stroke="#f26522" stroke-width="3"/>
+        <!-- Sleek Enclosed VIP Cabin -->
+        <path d="M120 118 L150 78 L280 78 L305 118 Z" fill="#091322" stroke="#64748b" stroke-width="1.5"/>
+        <path d="M155 86 L270 86 L285 112 L140 112 Z" fill="#00cce6" opacity="0.3"/>
+        <!-- Twin Yamaha Outboards -->
+        <rect x="36" y="132" width="14" height="26" rx="2" fill="#0f172a" stroke="#cbd5e1"/>
+        <rect x="24" y="136" width="14" height="24" rx="2" fill="#0f172a" stroke="#94a3b8"/>
+        <line x1="220" y1="78" x2="220" y2="64" stroke="#e2e8f0" stroke-width="2"/>
+        <ellipse cx="220" cy="62" rx="6" ry="2" fill="#e2e8f0"/>
+      </svg>`,
+      cruiser: `<svg viewBox="0 0 400 220" class="w-full h-full bg-[#0a101d]" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="hull3" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#1e2230"/><stop offset="100%" stop-color="#0a1220"/></linearGradient>
+        </defs>
+        <!-- Ocean -->
+        <path d="M0 160 Q120 156 240 160 T400 160 L400 220 L0 220 Z" fill="#071224"/>
+        <!-- Cruiser Hull 42ft -->
+        <path d="M40 155 L65 112 L300 112 L375 142 L385 155 L40 155 Z" fill="url(#hull3)" stroke="#475569" stroke-width="2"/>
+        <path d="M48 151 L376 151" stroke="#00cce6" stroke-width="3.5"/>
+        <!-- Raised VIP Deckhouse -->
+        <path d="M110 112 L135 68 L285 68 L320 112 Z" fill="#0d1b2a" stroke="#64748b" stroke-width="1.5"/>
+        <path d="M142 75 L275 75 L300 106 L130 106 Z" fill="#38bdf8" opacity="0.4"/>
+        <!-- Sunshade Aft Deck -->
+        <path d="M70 100 L115 100" stroke="#cbd5e1" stroke-width="3"/>
+        <line x1="72" y1="100" x2="72" y2="152" stroke="#94a3b8" stroke-width="2"/>
+        <!-- Outboards Triple Power -->
+        <rect x="25" y="132" width="13" height="28" rx="2" fill="#0f172a" stroke="#e2e8f0"/>
+        <rect x="14" y="135" width="13" height="26" rx="2" fill="#0f172a" stroke="#cbd5e1"/>
+        <rect x="3" y="138" width="13" height="24" rx="2" fill="#0f172a" stroke="#94a3b8"/>
+      </svg>`,
+      majestic: `<svg viewBox="0 0 400 220" class="w-full h-full bg-[#0a101d]" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="hull4" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#152033"/><stop offset="100%" stop-color="#0b1320"/></linearGradient>
+        </defs>
+        <path d="M0 162 Q160 158 320 162 T400 162 L400 220 L0 220 Z" fill="#071224"/>
+        <!-- Mega Tender Hull 50ft -->
+        <path d="M35 156 L60 106 L320 106 L385 140 L395 156 L35 156 Z" fill="url(#hull4)" stroke="#64748b" stroke-width="2"/>
+        <path d="M42 152 L388 152" stroke="#e5a93c" stroke-width="3.5"/>
+        <!-- Dual Tier VIP Salon -->
+        <path d="M100 106 L125 58 L300 58 L340 106 Z" fill="#0a1424" stroke="#94a3b8" stroke-width="1.8"/>
+        <path d="M135 66 L290 66 L322 100 L120 100 Z" fill="#00cce6" opacity="0.35"/>
+        <!-- Mast & Satcom Dome -->
+        <line x1="225" y1="58" x2="225" y2="40" stroke="#f1f5f9" stroke-width="2.5"/>
+        <ellipse cx="225" cy="38" rx="8" ry="4" fill="#ffffff"/>
+        <!-- Triple Outboards -->
+        <rect x="20" y="132" width="13" height="28" rx="2" fill="#020617" stroke="#38bdf8"/>
+        <rect x="9" y="135" width="13" height="26" rx="2" fill="#020617" stroke="#38bdf8"/>
+        <rect x="-2" y="138" width="13" height="24" rx="2" fill="#020617" stroke="#38bdf8"/>
+      </svg>`
+    };
+
+    // Fleet Specifications
+    let fleet = [
+      {
+        id: 'arriva_38',
+        name: 'Arriva 38 Sovereign',
+        category: 'Executive Closed-Cabin Speedboat',
+        maxPax: 14,
+        speedKnots: 32,
+        fuelBurnPerKm: 2.2, // liters per km
+        engines: 'Twin Yamaha 300HP 4-Stroke',
+        length: '38 ft / 11.6m',
+        features: ['Full Air-Conditioned VIP Cabin', 'High-Speed Maldivian Channel Hull', 'Complimentary Chilled Water & WiFi', 'Freshwater Washroom'],
+        svgKey: 'sovereign',
+        badge: 'Recommended'
+      },
+      {
+        id: 'arriva_42',
+        name: 'Arriva 42 Gran Cruiser',
+        category: 'Luxury VIP Cabin Cruiser',
+        maxPax: 18,
+        speedKnots: 28,
+        fuelBurnPerKm: 3.1,
+        engines: 'Twin Mercury 450R Racing Outboards',
+        length: '42 ft / 12.8m',
+        features: ['Private Restroom & Powder Vanity', 'Aft Sun Lounger & Deck', 'Bluetooth Marine Sound', 'Extended Luggage Hold (20+ Bags)'],
+        svgKey: 'cruiser',
+        badge: 'VIP Class'
+      },
+      {
+        id: 'arriva_33',
+        name: 'Arriva 33 Gulf Tender',
+        category: 'Rapid Agile Atoll Express',
+        maxPax: 8,
+        speedKnots: 34,
+        fuelBurnPerKm: 1.8,
+        engines: 'Twin Yamaha 250HP Outboards',
+        length: '33 ft / 10.1m',
+        features: ['Bimini Shaded Seating', 'Rapid Shallow Reef Entry', 'Coolbox Beverage Storage', 'Fast Turnaround Transfer'],
+        svgKey: 'sport',
+        badge: 'Fast Transfer'
+      },
+      {
+        id: 'arriva_50',
+        name: 'Arriva 50 Super Majestic',
+        category: 'Ultra-Luxury Megayacht Tender',
+        maxPax: 22,
+        speedKnots: 30,
+        fuelBurnPerKm: 4.0,
+        engines: 'Triple Mercury Verado 400HP',
+        length: '50 ft / 15.2m',
+        features: ['Twin Stateroom AC Salons', 'Starlink Maritime High-Speed', 'Full Wet Bar & Galley', 'Direct Wheelchair & VIP Ramp'],
+        svgKey: 'majestic',
+        badge: 'Flagship'
+      }
+    ];
+
+    /* ================= ROUTE DISTANCE MATRIX ================= */
+    let routes = {
+      mle_airport: {
+        lily_beach: { km: 85, atoll: 'South Ari Atoll', name: 'Lily Beach Resort & Spa' },
+        kandima: { km: 145, atoll: 'Dhaalu Atoll', name: 'Kandima Maldives' },
+        reethi_rah: { km: 38, atoll: 'North Malé Atoll', name: 'One&Only Reethi Rah' },
+        lux_ari: { km: 89, atoll: 'South Ari Atoll', name: 'LUX* South Ari Atoll' },
+        waldorf: { km: 23, atoll: 'South Malé Atoll', name: 'Waldorf Astoria Maldives Ithaafushi' }
+      },
+      male_city: {
+        lily_beach: { km: 86, atoll: 'South Ari Atoll', name: 'Lily Beach Resort & Spa' },
+        kandima: { km: 144, atoll: 'Dhaalu Atoll', name: 'Kandima Maldives' },
+        reethi_rah: { km: 40, atoll: 'North Malé Atoll', name: 'One&Only Reethi Rah' },
+        lux_ari: { km: 90, atoll: 'South Ari Atoll', name: 'LUX* South Ari Atoll' },
+        waldorf: { km: 21, atoll: 'South Malé Atoll', name: 'Waldorf Astoria Maldives Ithaafushi' }
+      },
+      crossroads: {
+        lily_beach: { km: 80, atoll: 'South Ari Atoll', name: 'Lily Beach Resort & Spa' },
+        kandima: { km: 138, atoll: 'Dhaalu Atoll', name: 'Kandima Maldives' },
+        reethi_rah: { km: 48, atoll: 'North Malé Atoll', name: 'One&Only Reethi Rah' },
+        lux_ari: { km: 82, atoll: 'South Ari Atoll', name: 'LUX* South Ari Atoll' },
+        waldorf: { km: 14, atoll: 'South Malé Atoll', name: 'Waldorf Astoria Maldives Ithaafushi' }
+      },
+      maafushi: {
+        lily_beach: { km: 75, atoll: 'South Ari Atoll', name: 'Lily Beach Resort & Spa' },
+        kandima: { km: 128, atoll: 'Dhaalu Atoll', name: 'Kandima Maldives' },
+        reethi_rah: { km: 58, atoll: 'North Malé Atoll', name: 'One&Only Reethi Rah' },
+        lux_ari: { km: 76, atoll: 'South Ari Atoll', name: 'LUX* South Ari Atoll' },
+        waldorf: { km: 12, atoll: 'South Malé Atoll', name: 'Waldorf Astoria Maldives Ithaafushi' }
+      }
+    };
+
+    const departureDisplayNames = {
+      mle_airport: 'Velana International Airport (MLE Jetty)',
+      male_city: 'Malé City Presidential Jetway',
+      crossroads: 'Crossroads Marina',
+      maafushi: 'Maafushi Island Jetty'
+    };
+
+    /* ================= COMMERCIAL ADMIN CONFIGURATION ================= */
+    let adminConfig = {
+      fuelPricePerLiter: 1.35,      // USD per Liter
+      profitMarginPercent: 35,      // 35% margin
+      crewBaseOperationsFee: 160.0, // Fixed crew & terminal berthing fee
+      harborAtollDues: 45.0,        // Harbor / MPA navigation fee
+      tgstPercent: 16               // 16% Maldives TGST
+    };
+
+    /* ================= STATE ================= */
+    let customerState = {
+      departure: '',
+      destination: '',
+      customKm: 65,
+      date: '',
+      time: '11:00',
+      pax: 4,
+      luggage: 4,
+      tripType: 'oneway', // 'oneway' | 'roundtrip'
+      selectedVesselId: null
+    };
+
+    /* ================= APP INITIALIZATION ================= */
+    window.addEventListener('DOMContentLoaded', () => {
+      // Set tomorrow as default transfer date
+      const tomorrow = new Date();
+      tomorrow.setDate(tomorrow.getDate() + 1);
+      const dateStr = tomorrow.toISOString().split('T')[0];
+      const dateEl = document.getElementById('custDate');
+      if (dateEl) {
+        dateEl.value = dateStr;
+        dateEl.min = new Date().toISOString().split('T')[0];
+        customerState.date = dateStr;
+      }
+
+      // Populate Admin Inputs
+      populateAdminFields();
+
+      // Render Static Fleet Showcase
+      renderShowcaseCards();
+      renderSampleRoutes();
+
+      // Lucide icons
+      if (window.lucide) lucide.createIcons();
+    });
+
+    /* ================= VIEW SWITCHER (CUSTOMER VS ADMIN) ================= */
+    function switchView(viewName) {
+      const custView = document.getElementById('customerView');
+      const adminView = document.getElementById('adminView');
+      const tabCust = document.getElementById('viewTabCustomer');
+      const tabAdmin = document.getElementById('viewTabAdmin');
+
+      if (viewName === 'admin') {
+        custView.classList.add('hidden');
+        adminView.classList.remove('hidden');
+        tabAdmin.classList.add('bg-[#f26522]', 'text-white');
+        tabAdmin.classList.remove('text-slate-400');
+        tabCust.classList.remove('bg-[#00cce6]', 'text-arriva-black');
+        tabCust.classList.add('text-slate-400');
+        populateAdminFields();
+      } else {
+        adminView.classList.add('hidden');
+        custView.classList.remove('hidden');
+        tabCust.classList.add('bg-[#00cce6]', 'text-arriva-black');
+        tabCust.classList.remove('text-slate-400');
+        tabAdmin.classList.remove('bg-[#f26522]', 'text-white');
+        tabAdmin.classList.add('text-slate-400');
+      }
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      if (window.lucide) lucide.createIcons();
+    }
+
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobileMenu');
+      menu.classList.toggle('hidden');
+    }
+
+    /* ================= CUSTOMER INTERACTIONS & LOGIC ================= */
+    function adjustPaxCount(delta) {
+      const el = document.getElementById('custPax');
+      let val = parseInt(el.value) || 1;
+      val = Math.max(1, Math.min(25, val + delta));
+      el.value = val;
+      customerState.pax = val;
+      onCustomerInputChanged();
+    }
+
+    function adjustLuggage(delta) {
+      const el = document.getElementById('custLuggage');
+      let val = parseInt(el.value) || 0;
+      val = Math.max(0, Math.min(30, val + delta));
+      el.value = val;
+      customerState.luggage = val;
+    }
+
+    function setCustomerTripType(type) {
+      customerState.tripType = type;
+      const bOne = document.getElementById('btnTripOneWay');
+      const bRet = document.getElementById('btnTripReturn');
+
+      if (type === 'roundtrip') {
+        bRet.classList.add('bg-[#00cce6]', 'text-arriva-black');
+        bRet.classList.remove('text-slate-400');
+        bOne.classList.remove('bg-[#00cce6]', 'text-arriva-black');
+        bOne.classList.add('text-slate-400');
+      } else {
+        bOne.classList.add('bg-[#00cce6]', 'text-arriva-black');
+        bOne.classList.remove('text-slate-400');
+        bRet.classList.remove('bg-[#00cce6]', 'text-arriva-black');
+        bRet.classList.add('text-slate-400');
+      }
+
+      onCustomerInputChanged();
+    }
+
+    function onCustomerInputChanged() {
+      customerState.departure = document.getElementById('custDeparture').value;
+      customerState.destination = document.getElementById('custDestination').value;
+      customerState.date = document.getElementById('custDate').value;
+      customerState.time = document.getElementById('custTime').value;
+
+      const customBox = document.getElementById('custCustomDistanceBox');
+      const awaitingBox = document.getElementById('fleetAwaitingRouteBox');
+      const fleetList = document.getElementById('fleetCardsContainer');
+      const noticeBox = document.getElementById('routeSummaryNotice');
+      const badge = document.getElementById('itineraryStatusBadge');
+
+      if (customerState.destination === 'custom') {
+        customBox.classList.remove('hidden');
+        customerState.customKm = parseFloat(document.getElementById('custCustomKm').value) || 50;
+        const nm = (customerState.customKm * 0.539957).toFixed(1);
+        document.getElementById('customNmLabel').innerText = `~ ${nm} Nautical Miles`;
+      } else {
+        customBox.classList.add('hidden');
+      }
+
+      // Check if both departure and destination are chosen
+      const routeReady = (customerState.departure && customerState.destination);
+
+      if (!routeReady) {
+        awaitingBox.classList.remove('hidden');
+        fleetList.classList.add('hidden');
+        noticeBox.classList.add('hidden');
+        badge.innerText = 'Awaiting Route';
+        badge.className = 'text-xs text-arriva-cyan font-mono';
+        return;
+      }
+
+      // Route is ready -> Calculate distance
+      let distKm = 85;
+      let atollText = 'South Ari Atoll';
+
+      if (customerState.destination === 'custom') {
+        distKm = customerState.customKm;
+        atollText = 'Custom Marine Route';
+      } else {
+        const routeData = routes[customerState.departure] && routes[customerState.departure][customerState.destination];
+        if (routeData) {
+          distKm = routeData.km;
+          atollText = routeData.atoll;
+        }
+      }
+
+      const nm = (distKm * 0.539957).toFixed(1);
+
+      // Show route notice
+      noticeBox.classList.remove('hidden');
+      document.getElementById('routeCorridorText').innerText = atollText;
+      document.getElementById('routeKmText').innerText = `${distKm} km (${nm} NM)${customerState.tripType === 'roundtrip' ? ' • Return Route' : ''}`;
+
+      badge.innerText = 'Ready For Quotation';
+      badge.className = 'text-xs text-emerald-400 font-mono font-bold';
+
+      // Hide placeholder, reveal calculated fleet
+      awaitingBox.classList.add('hidden');
+      fleetList.classList.remove('hidden');
+
+      renderCustomerFleetCards(distKm);
+    }
+
+    /* ================= CORE QUOTATION FORMULA (INTERNAL BACKOFFICE LOGIC) ================= */
+    // Note: Guest UI only sees the calculated final quote, never the raw parameters!
+    function calculateFinalQuote(vessel, baseKm) {
+      let tripDistance = baseKm;
+      if (customerState.tripType === 'roundtrip') {
+        tripDistance *= 2;
+      }
+
+      // 1. Total fuel liters consumed based on vessel factor
+      const fuelLiters = tripDistance * vessel.fuelBurnPerKm;
+      const fuelCost = fuelLiters * adminConfig.fuelPricePerLiter;
+
+      // 2. Base vessel & crew turnaround fee
+      let crewCost = adminConfig.crewBaseOperationsFee;
+      if (customerState.tripType === 'roundtrip') crewCost *= 1.4;
+
+      // 3. Harbor & atoll conservation surcharge
+      const harborCost = adminConfig.harborAtollDues * (customerState.tripType === 'roundtrip' ? 2 : 1);
+
+      // Direct operational cost
+      const directCost = fuelCost + crewCost + harborCost;
+
+      // 4. Profit margin application
+      const profitMargin = directCost * (adminConfig.profitMarginPercent / 100);
+      const netCharterPrice = directCost + profitMargin;
+
+      // 5. Maldives TGST (16%)
+      const tgst = netCharterPrice * (adminConfig.tgstPercent / 100);
+
+      // Final customer price rounded to nearest $5
+      const grandTotal = Math.round((netCharterPrice + tgst) / 5) * 5;
+      return grandTotal;
+    }
+
+    /* ================= RENDER CUSTOMER FLEET CARDS ================= */
+    function renderCustomerFleetCards(distKm) {
+      const container = document.getElementById('fleetCardsContainer');
+      container.innerHTML = '';
+
+      fleet.forEach(vessel => {
+        const quote = calculateFinalQuote(vessel, distKm);
+        const isOverCapacity = (customerState.pax > vessel.maxPax);
+
+        // Calculate travel time in hours/minutes
+        const speedKmh = vessel.speedKnots * 1.852;
+        const minutes = Math.round((distKm / speedKmh) * 60) + 10;
+        const hrs = Math.floor(minutes / 60);
+        const mins = minutes % 60;
+        const timeFormatted = hrs > 0 ? `${hrs}h ${mins}m` : `${mins} mins`;
+
+        const card = document.createElement('div');
+        card.className = `bg-arriva-card border rounded-2xl overflow-hidden transition-all duration-300 ${
+          isOverCapacity 
+            ? 'border-slate-800 opacity-60' 
+            : 'border-arriva-border hover:border-arriva-cyan/60 hover:shadow-xl hover:shadow-cyan-950/20'
+        }`;
+
+        card.innerHTML = `
+          <div class="grid grid-cols-1 md:grid-cols-12">
+            
+            <!-- Vessel SVG Graphic (Guaranteed display) -->
+            <div class="md:col-span-5 relative h-48 md:h-auto min-h-[180px] bg-[#0a101d] flex items-center justify-center p-2 border-b md:border-b-0 md:border-r border-arriva-border">
+              ${boatSvgs[vessel.svgKey] || boatSvgs.sport}
+              <span class="absolute top-3 left-3 px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-arriva-black/80 text-arriva-cyan border border-arriva-cyan/30">
+                ${vessel.badge}
+              </span>
+              <span class="absolute bottom-3 left-3 px-2 py-0.5 rounded text-[10px] font-mono font-semibold bg-arriva-black/80 text-slate-300">
+                ${vessel.length}
+              </span>
+            </div>
+
+            <!-- Vessel Details & All-Inclusive Quote -->
+            <div class="md:col-span-7 p-5 flex flex-col justify-between">
+              
+              <div>
+                <div class="flex items-start justify-between">
+                  <div>
+                    <h4 class="text-lg font-bold text-white font-display">${vessel.name}</h4>
+                    <p class="text-xs text-slate-400">${vessel.category}</p>
+                  </div>
+                  <div class="text-right">
+                    <span class="text-[10px] uppercase font-bold tracking-wider text-slate-400 block">All-Inclusive Quote</span>
+                    <span class="text-2xl font-bold text-arriva-cyan font-mono">$${quote.toLocaleString()}</span>
+                    <span class="text-[9px] text-slate-400 block">USD Net (Inc. TGST &amp; Crew)</span>
+                  </div>
+                </div>
+
+                <!-- Specs Row -->
+                <div class="grid grid-cols-3 gap-2 py-3 mt-3 border-y border-arriva-border text-xs">
+                  <div>
+                    <span class="text-[10px] text-slate-500 block">Max Guests</span>
+                    <strong class="${isOverCapacity ? 'text-rose-400 font-bold' : 'text-slate-200'}">
+                      ${vessel.maxPax} Pax ${isOverCapacity ? '(Exceeded)' : ''}
+                    </strong>
+                  </div>
+                  <div>
+                    <span class="text-[10px] text-slate-500 block">Cruising Speed</span>
+                    <strong class="text-slate-200">${vessel.speedKnots} Knots</strong>
+                  </div>
+                  <div>
+                    <span class="text-[10px] text-slate-500 block">Est. Passage</span>
+                    <strong class="text-slate-200 font-mono">~${timeFormatted}</strong>
+                  </div>
+                </div>
+
+                <!-- Features list -->
+                <div class="mt-3">
+                  <div class="flex flex-wrap gap-1.5">
+                    ${vessel.features.slice(0, 3).map(f => `
+                      <span class="inline-flex items-center text-[10px] bg-arriva-dark px-2 py-0.5 rounded text-slate-300 border border-arriva-border">
+                        <i data-lucide="check" class="w-3 h-3 text-arriva-cyan mr-1"></i> ${f}
+                      </span>
+                    `).join('')}
+                  </div>
+                </div>
+              </div>
+
+              <!-- Action Button -->
+              <div class="mt-5 pt-3 border-t border-arriva-border/60 flex items-center justify-between gap-3">
+                <span class="text-[11px] text-slate-400 flex items-center truncate">
+                  <i data-lucide="shield-check" class="w-3.5 h-3.5 text-emerald-400 mr-1 flex-shrink-0"></i>
+                  ${customerState.tripType === 'roundtrip' ? 'Round-trip transfer quotation' : 'One-way direct charter quotation'}
+                </span>
+                
+                <button onclick="openQuoteModal('${vessel.id}', ${quote})" ${isOverCapacity ? 'disabled' : ''} class="px-4 py-2 rounded-xl font-bold text-xs uppercase tracking-wider transition-all duration-200 ${
+                  isOverCapacity 
+                    ? 'bg-slate-800 text-slate-500 cursor-not-allowed' 
+                    : 'bg-[#00cce6] hover:bg-arriva-cyanHover text-arriva-black shadow-lg hover:shadow-cyan-900/30'
+                }">
+                  Request Availability
+                </button>
+              </div>
+
+            </div>
+
+          </div>
+        `;
+
+        container.appendChild(card);
+      });
+
+      if (window.lucide) lucide.createIcons();
+    }
+
+    /* ================= STATIC SHOWCASE CARDS (THE FLEET SECTION) ================= */
+    function renderShowcaseCards() {
+      const container = document.getElementById('staticFleetCards');
+      if (!container) return;
+
+      container.innerHTML = '';
+      fleet.forEach(v => {
+        const div = document.createElement('div');
+        div.className = 'bg-arriva-card border border-arriva-border rounded-2xl overflow-hidden flex flex-col';
+        div.innerHTML = `
+          <div class="h-44 bg-[#0a101d] relative p-2 border-b border-arriva-border">
+            ${boatSvgs[v.svgKey]}
+            <span class="absolute top-3 right-3 text-[10px] font-bold px-2 py-0.5 rounded bg-arriva-black/80 text-arriva-cyan border border-arriva-cyan/30">
+              ${v.length}
+            </span>
+          </div>
+          <div class="p-5 flex-1 flex flex-col justify-between">
+            <div>
+              <h4 class="text-base font-bold text-white font-display">${v.name}</h4>
+              <p class="text-xs text-slate-400 mt-0.5">${v.category}</p>
+              <div class="mt-3 pt-3 border-t border-arriva-border text-xs space-y-1 text-slate-300">
+                <div class="flex justify-between"><span class="text-slate-500">Engines:</span> <span>${v.engines}</span></div>
+                <div class="flex justify-between"><span class="text-slate-500">Cruising:</span> <span class="font-mono">${v.speedKnots} Knots</span></div>
+                <div class="flex justify-between"><span class="text-slate-500">Max Guests:</span> <span>${v.maxPax} Pax</span></div>
+              </div>
+            </div>
+            <button onclick="selectVesselFromShowcase('${v.id}')" class="mt-4 w-full py-2 rounded-xl bg-arriva-dark hover:bg-arriva-border text-arriva-cyan text-xs font-bold transition-colors">
+              Book This Vessel
+            </button>
+          </div>
+        `;
+        container.appendChild(div);
+      });
+    }
+
+    function selectVesselFromShowcase(vesselId) {
+      window.scrollTo({ top: 380, behavior: 'smooth' });
+      const dep = document.getElementById('custDeparture');
+      const dest = document.getElementById('custDestination');
+      if (!dep.value) dep.value = 'mle_airport';
+      if (!dest.value) dest.value = 'lily_beach';
+      onCustomerInputChanged();
+      showToast('Vessel Selected', `${fleet.find(f => f.id === vesselId).name} selected for your trip quotation.`);
+    }
+
+    function renderSampleRoutes() {
+      const container = document.getElementById('sampleRoutesGrid');
+      if (!container) return;
+
+      const samples = [
+        { name: 'Lily Beach Resort & Spa', atoll: 'South Ari Atoll', km: '85 km / 46 NM', time: '1h 15m' },
+        { name: 'Kandima Maldives', atoll: 'Dhaalu Atoll', km: '145 km / 78 NM', time: '2h 10m' },
+        { name: 'One&Only Reethi Rah', atoll: 'North Malé Atoll', km: '38 km / 20 NM', time: '35m' },
+        { name: 'Waldorf Astoria Ithaafushi', atoll: 'South Malé Atoll', km: '23 km / 12 NM', time: '25m' }
+      ];
+
+      container.innerHTML = '';
+      samples.forEach(s => {
+        const div = document.createElement('div');
+        div.className = 'p-4 rounded-xl bg-arriva-card border border-arriva-border flex items-center justify-between text-xs';
+        div.innerHTML = `
+          <div>
+            <h5 class="font-bold text-white">${s.name}</h5>
+            <span class="text-arriva-cyan text-[11px]">${s.atoll}</span>
+          </div>
+          <div class="text-right font-mono">
+            <span class="text-slate-200 block font-bold">${s.km}</span>
+            <span class="text-slate-500 text-[10px]">~${s.time}</span>
+          </div>
+        `;
+        container.appendChild(div);
+      });
+    }
+
+    /* ================= MODAL: BOOKING / QUOTATION REQUEST ================= */
+    let activeModalQuote = 0;
+    let activeModalVessel = null;
+
+    function openQuoteModal(vesselId, quoteAmount) {
+      activeModalVessel = fleet.find(v => v.id === vesselId);
+      activeModalQuote = quoteAmount;
+
+      const destSelect = document.getElementById('custDestination');
+      const destText = destSelect.options[destSelect.selectedIndex].text;
+      const depName = departureDisplayNames[customerState.departure] || 'Velana Airport';
+
+      document.getElementById('modalVesselName').innerText = activeModalVessel.name;
+      document.getElementById('modalRouteSummary').innerText = `${depName} → ${destText}`;
+      document.getElementById('modalPaxSummary').innerText = `${customerState.pax} Guests • ${customerState.luggage} Bags • ${customerState.tripType === 'roundtrip' ? 'Round-Trip' : 'One-Way'}`;
+      document.getElementById('modalPriceTotal').innerText = `$${quoteAmount.toLocaleString()} USD`;
+
+      document.getElementById('quoteModal').classList.remove('hidden');
+      if (window.lucide) lucide.createIcons();
+    }
+
+    function closeQuoteModal() {
+      document.getElementById('quoteModal').classList.add('hidden');
+    }
+
+    function handleSendBookingRequest(e) {
+      e.preventDefault();
+      const guestName = document.getElementById('reqName').value;
+      const guestEmail = document.getElementById('reqEmail').value;
+      const guestPhone = document.getElementById('reqPhone').value;
+      const flight = document.getElementById('reqFlight').value || 'Not specified';
+      const refCode = 'ARR-' + Math.floor(1000 + Math.random() * 9000);
+
+      closeQuoteModal();
+
+      showToast('Quotation Dispatched', `Booking inquiry ${refCode} sent. Availability will be confirmed for ${guestName} within 15 minutes.`);
+
+      // Open pre-populated WhatsApp message for the guest
+      setTimeout(() => {
+        const text = encodeURIComponent(
+          `*ARRIVA MALDIVES - CHARTER INQUIRY*\n` +
+          `Ref: ${refCode}\n` +
+          `Lead Guest: ${guestName}\n` +
+          `Vessel: ${activeModalVessel.name}\n` +
+          `Guests: ${customerState.pax} Pax\n` +
+          `Date: ${customerState.date} at ${customerState.time}\n` +
+          `Flight: ${flight}\n` +
+          `All-Inclusive Quote: $${activeModalQuote.toLocaleString()} USD\n` +
+          `Please verify dock clearance and vessel availability.`
+        );
+        window.open(`https://wa.me/9607902774?text=${text}`, '_blank');
+      }, 800);
+    }
+
+    /* ================= ADMIN CONFIGURATION PANEL MANAGEMENT ================= */
+    function populateAdminFields() {
+      document.getElementById('cfgFuelPrice').value = adminConfig.fuelPricePerLiter;
+      document.getElementById('cfgMargin').value = adminConfig.profitMarginPercent;
+      document.getElementById('cfgMarginLabel').innerText = adminConfig.profitMarginPercent + '%';
+      document.getElementById('cfgCrewBase').value = adminConfig.crewBaseOperationsFee;
+      document.getElementById('cfgTgst').value = adminConfig.tgstPercent;
+      document.getElementById('cfgTgstLabel').innerText = adminConfig.tgstPercent + '%';
+
+      // Render Admin Vessel Management
+      const vContainer = document.getElementById('adminVesselList');
+      if (vContainer) {
+        vContainer.innerHTML = '';
+        fleet.forEach(v => {
+          const row = document.createElement('div');
+          row.className = 'p-3.5 rounded-xl bg-arriva-dark border border-arriva-border flex flex-col sm:flex-row sm:items-center justify-between gap-3';
+          row.innerHTML = `
+            <div>
+              <div class="flex items-center space-x-2">
+                <span class="font-bold text-white text-sm font-display">${v.name}</span>
+                <span class="text-[10px] px-1.5 py-0.5 rounded bg-arriva-card text-arriva-cyan font-mono">${v.length}</span>
+              </div>
+              <p class="text-xs text-slate-400">${v.engines} • Max ${v.maxPax} Pax</p>
+            </div>
+
+            <div class="flex items-center space-x-3 text-xs">
+              <label class="text-slate-400">Fuel Burn (L/KM):</label>
+              <input type="number" step="0.1" min="0.5" max="10.0" value="${v.fuelBurnPerKm}" onchange="updateVesselBurn('${v.id}', this.value)" class="w-20 bg-arriva-card border border-arriva-border rounded-lg px-2.5 py-1 text-white font-mono text-center focus:border-arriva-cyan focus:outline-none">
+            </div>
+          `;
+          vContainer.appendChild(row);
+        });
+      }
+
+      // Render Admin Routes Matrix
+      const rContainer = document.getElementById('adminRoutesList');
+      if (rContainer) {
+        rContainer.innerHTML = '';
+        const airportRoutes = routes.mle_airport;
+        Object.keys(airportRoutes).forEach(key => {
+          const r = airportRoutes[key];
+          const div = document.createElement('div');
+          div.className = 'p-3 rounded-xl bg-arriva-dark border border-arriva-border text-xs';
+          div.innerHTML = `
+            <span class="font-bold text-white block truncate">${r.name}</span>
+            <span class="text-[10px] text-slate-400 block mb-2">${r.atoll}</span>
+            <div class="flex items-center justify-between">
+              <span class="text-slate-500 text-[11px]">Distance:</span>
+              <div class="flex items-center space-x-1">
+                <input type="number" min="5" max="300" value="${r.km}" onchange="updateRouteDistance('${key}', this.value)" class="w-16 bg-arriva-card border border-arriva-border rounded px-2 py-0.5 text-white font-mono text-center text-xs">
+                <span class="text-slate-400 text-[10px]">KM</span>
+              </div>
+            </div>
+          `;
+          rContainer.appendChild(div);
+        });
+      }
+    }
+
+    function updateAdminConfig() {
+      adminConfig.fuelPricePerLiter = parseFloat(document.getElementById('cfgFuelPrice').value) || 1.35;
+      adminConfig.profitMarginPercent = parseInt(document.getElementById('cfgMargin').value) || 35;
+      adminConfig.crewBaseOperationsFee = parseFloat(document.getElementById('cfgCrewBase').value) || 160;
+      adminConfig.tgstPercent = parseInt(document.getElementById('cfgTgst').value) || 16;
+
+      // Re-render customer quotes if route active
+      if (customerState.departure && customerState.destination) {
+        onCustomerInputChanged();
+      }
+      showToast('Admin Settings Applied', 'Commercial parameters saved. Real-time quotations updated.');
+    }
+
+    function updateVesselBurn(vesselId, value) {
+      const v = fleet.find(item => item.id === vesselId);
+      if (v) {
+        v.fuelBurnPerKm = parseFloat(value) || 2.0;
+        if (customerState.departure && customerState.destination) {
+          onCustomerInputChanged();
+        }
+        showToast('Fuel Coefficient Updated', `${v.name} burn rate set to ${v.fuelBurnPerKm} L/km.`);
+      }
+    }
+
+    function updateRouteDistance(routeKey, value) {
+      const val = parseFloat(value) || 50;
+      if (routes.mle_airport[routeKey]) {
+        routes.mle_airport[routeKey].km = val;
+      }
+      if (customerState.departure && customerState.destination) {
+        onCustomerInputChanged();
+      }
+      showToast('Route Distance Calibrated', `Distance for ${routes.mle_airport[routeKey].name} set to ${val} KM.`);
+    }
+
+    function resetAdminDefaults() {
+      adminConfig = {
+        fuelPricePerLiter: 1.35,
+        profitMarginPercent: 35,
+        crewBaseOperationsFee: 160.0,
+        harborAtollDues: 45.0,
+        tgstPercent: 16
+      };
+      fleet.find(v => v.id === 'arriva_38').fuelBurnPerKm = 2.2;
+      fleet.find(v => v.id === 'arriva_42').fuelBurnPerKm = 3.1;
+      fleet.find(v => v.id === 'arriva_33').fuelBurnPerKm = 1.8;
+      fleet.find(v => v.id === 'arriva_50').fuelBurnPerKm = 4.0;
+
+      populateAdminFields();
+      if (customerState.departure && customerState.destination) {
+        onCustomerInputChanged();
+      }
+      showToast('Defaults Restored', 'Standard Maldivian tariffs and fleet coefficients restored.');
+    }
+
+    /* ================= TOAST NOTIFICATION UTILITY ================= */
+    function showToast(heading, body) {
+      const toast = document.getElementById('toastBox');
+      document.getElementById('toastHeading').innerText = heading;
+      document.getElementById('toastBody').innerText = body;
+
+      toast.classList.remove('translate-y-28', 'opacity-0');
+      toast.classList.add('translate-y-0', 'opacity-100');
+
+      setTimeout(() => {
+        toast.classList.remove('translate-y-0', 'opacity-100');
+        toast.classList.add('translate-y-28', 'opacity-0');
+      }, 4000);
+    }
+  </script>
+
+</body>
+</html>
